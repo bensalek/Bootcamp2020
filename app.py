@@ -14,16 +14,14 @@ import pickle
 import os
 
 #app name
-app = Flask(__name__)
+app = Flask(__name__,template_folder='templates')
 
-#load the saved model
-def load_model():
-  return pickle.load(open('Loan_model.pkl','rb'))
+model=pickle.load(open(Loan_model.pkl','rb'))
 
 #home page
 @app.route('/')
 def home():
-  return render_template('index.html')
+  return render_template(index.html')
 
 #predict the result and return it
 @app.route('/predict',methods=['POST'])
@@ -32,9 +30,16 @@ def predict():
     For rendering results on HTML GUI
     '''
     int_features = [int(x) for x in request.form.values()]
-    final_features = [np.array(int_features)]
-    prediction = XGmodel.predict(final_features)
+    final_features = pd.DataFrame([int_features], columns=['Gender', 'Married', 'Dependents', 'Education', 'Self_Employed', 'ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Credit_History', 'Property_Area'])
+    prediction = model.predict(final_features)
+    if 	prediction==0:
+	      pred="Rejected"
+    else:
+        pred="Approved" 
 
-    output = round(prediction[0], 2)
+   
 
-    return render_template('index.html', prediction_text='Employee Salary should be $ {}'.format(output))
+    return render_template('index.html', prediction_text='Loan application is  {}'.format(prediction))
+
+if __name__ == "__main__":
+    app.run(debug=True)
