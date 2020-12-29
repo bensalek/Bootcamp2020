@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Application Review</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <!--  <script src="app.js"></script>
+	<link rel="stylesheet" href="app.css"> --> <!-- For running locally -->
+    <script src="{{ url_for('static',filename='app.js') }}"></script>
+	<link rel="stylesheet"  href= "{{ url_for('static',filename='app.css') }}"> <!-- For integrating Flask and HTML -->
+</head>
+<body>
+<div class="img"></div>
+
+<form action="{{ url_for('predict')}}"method="post">
+
+	<h2>Applicant Income</h2>
+    <input class="area"  type="text" id="uiSqft" class="floatLabel" name="ApplicantIncom" >
+
+	<h2>CoApplicant Income</h2>
+    <input class="area"  type="text" id="uiSqft" class="floatLabel" name="CoapplicantIncome" >
+
+	<h2>Loan Amount</h2>
+    <input class="area"  type="text" id="uiSqft" class="floatLabel" name="LoanAmount" >
+
+	<h2>Loan Amount Term</h2>
+    <input class="area"  type="text" id="uiSqft" class="floatLabel" name="Loan_Amount_Term" >
+
+
+<h2>Gender</h2>
+	<div class="switch-field">
+		<input type="radio" id="radio-bhk-1" name="Gender" value=1/>
+		<label for="radio-bhk-1">Male</label>
+		<input type="radio" id="radio-bhk-2" name="Gender" value=0 checked/>
+		<label for="radio-bhk-2">Female</label>
+		
+	</div>
+
+	<h2>Credit_History: A record of a borrower's responsible repayment of debts</h2>
+	<div class="switch-field">
+		<input type="radio" id="radio-bhk-1" name="Credit_History" value="1"/>
+		<label for="radio-bhk-1">has all debts paid</label>
+		<input type="radio" id="radio-bhk-2" name="Credit_History" value="0" checked/>
+		<label for="radio-bhk-2">not paid</label>
+	</div>
+
+<h2>Married</h2>
+	<div class="switch-field">
+		<input type="radio" id="radio-bhk-1" name="Married" value="1"/>
+		<label for="radio-bhk-1">Yes</label>
+		<input type="radio" id="radio-bhk-2" name="Married" value="0" checked/>
+		<label for="radio-bhk-2">No</label>
+	</div>
+<h2>Education</h2>
+	<div class="switch-field">
+		<input type="radio" id="radio-bhk-1" name="Education" value="0"/>
+		<label for="radio-bhk-1">Graduate</label>
+		<input type="radio" id="radio-bhk-2" name="Education" value="1" checked/>
+		<label for="radio-bhk-2">Not Graduate</label>
+	</div>
+
+
+<h2>Self Employed</h2>
+	<div class="switch-field">
+		<input type="radio" id="radio-bhk-1" name="Self_Employed" value="1"/>
+		<label for="radio-bhk-1">Yes</label>
+		<input type="radio" id="radio-bhk-2" name="Self_Employed" value="0" checked/>
+		<label for="radio-bhk-2">No</label>
+	</div>
+
+
+
+
+
+
+<h2>Property Area</h2>
+	<div class="switch-field">
+		<input type="radio" id="radio-bhk-1" name="Property_Area" value="1"/>
+		<label for="radio-bhk-1">Semiurban</label>
+		<input type="radio" id="radio-bhk-2" name="Property_Area" value="0" checked/>
+		<label for="radio-bhk-2">Rural</label>
+		<input type="radio" id="radio-bhk-3" name="Property_Area" value="2" checked/>
+		<label for="radio-bhk-3">Urban</label>
+	</div>
+
+
+<h2>Dependants</h2>
+	<div class="switch-field">
+		<input type="radio" id="radio-bhk-1" name="Dependents" value="0"/>
+		<label for="radio-bhk-1">0</label>
+		<input type="radio" id="radio-bhk-2" name="Dependents" value="1" checked/>
+		<label for="radio-bhk-2">1</label>
+		<input type="radio" id="radio-bhk-3" name="Dependents" value="2" checked/>
+		<label for="radio-bhk-3">2</label>
+		<input type="radio" id="radio-bhk-3" name="Dependents" value="3" checked/>
+		<label for="radio-bhk-3">3+</label>
+	</div>
+
+
+ 
+</div>
+
+
+
+</div>
+
+	<div id="uiEstimatedPrice" class="result">	<h2></h2> </div>
+
+
+
+ <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+  </form>
+ <br>
+ <br>
+   {{ prediction_text }}
+
+ </div>
+
+</body>
+</html>
+    
+    	 
