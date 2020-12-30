@@ -34,9 +34,9 @@ def predict():
     final_features = pd.DataFrame([int_features], columns=['Gender', 'Married', 'Dependents', 'Education', 'Self_Employed', 'ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Credit_History', 'Property_Area'])
     prediction = model.predict(final_features)
     if 	prediction==0:
-	      pred="Approved"
+	      pred="Rejected"
     elif prediction==1:
-              pred="Rejected"
+              pred="Approved"
    
 
     return render_template('index.html', prediction_text='Loan application is  {}'.format(pred))
